@@ -21,4 +21,5 @@ class ImgTypes_Repository(app:Application) {
     fun getAllTypes():LiveData<List<Img_Types_model>> = imgtypeDao.get_all_type_Dao()
 
 
+
 }

@@ -18,6 +18,8 @@ class ImgTypes_ViewModel(application: Application):ViewModel() {
 
     }
 
+
+
     fun getAllTypes_ViewModel():LiveData<List<Img_Types_model>> = imgtypesRepository.getAllTypes()
 
     class ImgTypesViewModelFactory(private val application: Application): ViewModelProvider.Factory{
