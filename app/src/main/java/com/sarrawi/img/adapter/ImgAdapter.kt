@@ -2,37 +2,46 @@ package com.sarrawi.img.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.sarrawi.img.databinding.ImgDesignBinding
-import com.sarrawi.img.databinding.TypesDesignBinding
-import com.sarrawi.img.model.Img_Types_model
-import com.sarrawi.img.model.Imgs_Model
+import com.sarrawi.img.model.ImgsModel
 
 class ImgAdapter(val con: Context): RecyclerView.Adapter<ImgAdapter.ViewHolder>() {
 
-    class ViewHolder(val binding:ImgDesignBinding):RecyclerView.ViewHolder(binding.root) {
+    inner class ViewHolder(val binding:ImgDesignBinding):RecyclerView.ViewHolder(binding.root) {
 
         fun bind(position: Int) {
+
+            val current_imgModel = img_list[position]
+
+
+            Glide.with(con)
+                .load(current_imgModel.image_url) // تحديد URL الصورة
+                .circleCrop()
+                .into(binding.imgadapterImgViewContent) // تحديد ImageView كهدف لعرض الصورة
+
 
         }
     }
 
-    private val diffCallback = object : DiffUtil.ItemCallback<Imgs_Model>(){
-        override fun areItemsTheSame(oldItem: Imgs_Model, newItem: Imgs_Model): Boolean {
+    private val diffCallback = object : DiffUtil.ItemCallback<ImgsModel>(){
+        override fun areItemsTheSame(oldItem: ImgsModel, newItem: ImgsModel): Boolean {
             return oldItem.id == newItem.id
         }
 
-        override fun areContentsTheSame(oldItem: Imgs_Model, newItem: Imgs_Model): Boolean {
+        override fun areContentsTheSame(oldItem: ImgsModel, newItem: ImgsModel): Boolean {
             return newItem == oldItem
         }
 
     }
 
     private val differ = AsyncListDiffer(this, diffCallback)
-    var img_list: List<Imgs_Model>
+    var img_list: List<ImgsModel>
         get() = differ.currentList
         set(value) {
             differ.submitList(value)

@@ -14,7 +14,17 @@ import com.sarrawi.img.model.Img_Types_model
 
 class TypesAdapter_T (val con: Context): RecyclerView.Adapter<TypesAdapter_T.ViewHolder>() {
 
+    var onItemClick: ((Int) -> Unit)? = null
+
     inner class ViewHolder(val binding: TypesDesign2Binding):RecyclerView.ViewHolder(binding.root) {
+
+        init {
+            binding.root.setOnClickListener {
+                //اذا كانت null سيتم استخدام 0؟
+                //onItemClick?.invoke(msgsTypesModel[layoutPosition].id,msgsTypesModel[layoutPosition].MsgTypes!!)
+                onItemClick?.invoke(imgTypes_list[layoutPosition].id?:0)
+            }
+        }
 
         fun bind(position: Int) {
             val current_imgTypes=imgTypes_list[position]
@@ -29,7 +39,7 @@ class TypesAdapter_T (val con: Context): RecyclerView.Adapter<TypesAdapter_T.Vie
     }
     private val diffCallback = object : DiffUtil.ItemCallback<Img_Types_model>(){
         override fun areItemsTheSame(oldItem: Img_Types_model, newItem: Img_Types_model): Boolean {
-            return oldItem.ID == newItem.ID
+            return oldItem.id == newItem.id
         }
 
         override fun areContentsTheSame(oldItem: Img_Types_model, newItem: Img_Types_model): Boolean {

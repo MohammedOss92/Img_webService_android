@@ -8,8 +8,8 @@ import androidx.room.PrimaryKey
 data class Img_Types_model(
 
     @PrimaryKey(autoGenerate = true)
-    @ColumnInfo("ID")
-    var ID:Int,
+    @ColumnInfo("id")
+    var id:Int,
     @ColumnInfo("ImgTypes")
     var ImgTypes :String,
     @ColumnInfo("Pic")

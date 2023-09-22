@@ -2,7 +2,7 @@ package com.sarrawi.img.model
 
 import com.google.gson.annotations.SerializedName
 
-data class Imgs_Model(
+data class ImgsModel(
     @SerializedName("id")
     var id:Int,
     @SerializedName("ID_Type_id")

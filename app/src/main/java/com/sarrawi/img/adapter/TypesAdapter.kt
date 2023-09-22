@@ -39,7 +39,7 @@ class TypesAdapter(val con: Context): RecyclerView.Adapter<TypesAdapter.ViewHold
 
     private val diffCallback = object : DiffUtil.ItemCallback<Img_Types_model>(){
         override fun areItemsTheSame(oldItem: Img_Types_model, newItem: Img_Types_model): Boolean {
-            return oldItem.ID == newItem.ID
+            return oldItem.id == newItem.id
         }
 
         override fun areContentsTheSame(oldItem: Img_Types_model, newItem: Img_Types_model): Boolean {

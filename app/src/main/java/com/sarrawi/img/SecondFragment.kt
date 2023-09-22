@@ -48,6 +48,7 @@ class SecondFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setUpRv()
+        adapterOnClick()
     }
 
 
@@ -74,5 +75,13 @@ class SecondFragment : Fragment() {
                 }
             }
         }
+
+    fun adapterOnClick(){
+        typesAdapter_T.onItemClick = {id ->
+            val directions = SecondFragmentDirections.actionSecondFragmentToThirdFragment(id)
+            findNavController().navigate(directions)
+
+        }
+    }
 
 }

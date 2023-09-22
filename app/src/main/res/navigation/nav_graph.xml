@@ -21,5 +21,9 @@
         android:id="@+id/thirdFragment"
         android:name="com.sarrawi.img.ThirdFragment"
         android:label="ThirdFragment"
-        tools:layout="@layout/fragment_third"/>
+        tools:layout="@layout/fragment_third">
+        <argument
+            android:name="id"
+            app:argType="integer" />
+    </fragment>
 </navigation>
